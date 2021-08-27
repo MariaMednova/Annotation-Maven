@@ -9,10 +9,8 @@ public class Methods {
     public static List<String> getFromFile(String arg) throws IOException {
 
         Path path = Path.of(arg);
-        List <String> list= Files.readAllLines(path);
+        return  Files.readAllLines(path);
 
-
-        return list;
     }
 
     public static String getRandomQuestion(@org.jetbrains.annotations.NotNull List<String> questions) {
@@ -23,11 +21,11 @@ public class Methods {
     public static String getCurrentTimeStamp() {
         SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");
         Date now = new Date();
-        String strDate = sdfDate.format(now);
-        return strDate;
+        return  sdfDate.format(now);
+
     }
 
-    public static void writeInFile(Map<String, String> map) throws IOException {
+    public static void writeInFile(Map<String, String> map) {
         StringBuilder outputFileName = new StringBuilder();
         String date = getCurrentTimeStamp();
         outputFileName.append("D:\\вопросы-")
@@ -48,8 +46,10 @@ public class Methods {
         } finally {
             try {
                 //always close the writer
+                assert writer != null;
                 writer.close();
             } catch (Exception e) {
+                e.printStackTrace();
             }
 
         }
